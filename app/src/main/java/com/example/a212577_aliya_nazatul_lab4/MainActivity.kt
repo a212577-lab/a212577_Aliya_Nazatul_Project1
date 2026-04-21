@@ -1,4 +1,4 @@
-package com.example.a212577_aliya_nazatul_lab3
+package com.example.a212577_aliya_nazatul_lab4
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -31,7 +31,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Image
@@ -43,30 +42,30 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextFieldDefaults
-import com.example.a212577_aliya_nazatul_lab3.ui.theme.A212577_Aliya_Nazatul_Lab3Theme
+import com.example.a212577_aliya_nazatul_lab4.ui.theme.A212577_Aliya_Nazatul_Lab4Theme
+import com.example.a212577_aliya_nazatul_lab4.screen.MainScreen
+import com.example.a212577_aliya_nazatul_lab4.viewmodel.UserViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            A212577_Aliya_Nazatul_Lab3Theme {
+            A212577_Aliya_Nazatul_Lab4Theme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = colorScheme.background
                 ) {
-                    BMIApp()
+                    MainScreen()
+                    val userViewModel: UserViewModel = viewModel()
                 }
             }
         }
     }
 }
 @Composable
-fun BMIApp() {
-
-    // STATE (LAB 2 REQUIREMENT)
-    //mutableStateOf - stores input value
-    //remember - keep value even when recomposition happens
+fun BMIApp(userViewModel: UserViewModel){
 
     var heightInput by remember { mutableStateOf("") }
     var weightInput by remember { mutableStateOf("") }
@@ -172,6 +171,11 @@ fun BMIApp() {
                     diet = ""
                     showResult = true
                 }
+                userViewModel.addBmiRecord(
+                    bmi = bmiResult,
+                    category = category,
+                    date = "21 Apr 2026"
+                )
             },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
@@ -216,14 +220,14 @@ fun BMIApp() {
                         Text(
                             "BMI: %.2f".format(bmiResult.toFloatOrNull() ?: 0f),
                             style = MaterialTheme.typography.titleLarge,
-                            color = MaterialTheme.colorScheme.onSurface
+                            color = colorScheme.onSurface
                         )
 
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = "Category: $category",
                             style = MaterialTheme.typography.bodyLarge,
-                            color = MaterialTheme.colorScheme.onSurface
+                            color = colorScheme.onSurface
                         )
 
                         Spacer(modifier = Modifier.height(8.dp))
@@ -285,21 +289,9 @@ fun FakeBar(value: Float, label: String) {
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = label,
+            color = colorScheme.onBackground,
             style = MaterialTheme.typography.labelSmall
         )
     }
 }
-@Preview(showBackground = true)
-@Composable
-fun Preview() {
-    A212577_Aliya_Nazatul_Lab3Theme {
-        BMIApp()
-    }
-}
-@Preview
-@Composable
-fun DarkThemePreview() {
-    A212577_Aliya_Nazatul_Lab3Theme(darkTheme = true) {
-        BMIApp()
-    }
-}
+
