@@ -28,9 +28,13 @@ fun DiaryScreen(navController : NavController, userViewModel: UserViewModel){
     var previousWeight by remember { mutableStateOf(48f) }
     var showDialog by remember { mutableStateOf(false) }
     var weightInput by remember { mutableStateOf("") }
+
     val activities = userViewModel.activities
 
-    Column(modifier = Modifier.verticalScroll(rememberScrollState()).padding(20.dp)) {
+    Column(modifier = Modifier
+        .verticalScroll(rememberScrollState())
+        .padding(20.dp))
+    {
 
         Text("Daily Diary", style = MaterialTheme.typography.displayMedium)
 

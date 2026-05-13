@@ -18,9 +18,10 @@ import androidx.compose.foundation.verticalScroll
 import com.example.a212577_aliya_nazatul_project1.R
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import com.example.a212577_aliya_nazatul_project1.viewmodel.UserViewModel
 
 @Composable
-fun WeightProgressScreen(navController: NavController) {
+fun WeightProgressScreen(navController: NavController, userViewModel: UserViewModel) {
 
     val weights = listOf(
         53.8f, 53.5f, 53.0f, 53.4f,

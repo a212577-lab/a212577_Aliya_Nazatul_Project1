@@ -84,7 +84,7 @@ fun MainScreen() {
                 ActivityScreen(navController, userViewModel)
             }
             composable("weight_progress") {
-                WeightProgressScreen(navController)
+                WeightProgressScreen(navController, userViewModel)
             }
         }
     }

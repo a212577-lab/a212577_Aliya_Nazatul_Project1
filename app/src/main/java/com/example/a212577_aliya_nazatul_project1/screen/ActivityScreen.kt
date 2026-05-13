@@ -2,7 +2,6 @@ package com.example.a212577_aliya_nazatul_project1.screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,8 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.AlertDialog
@@ -43,70 +40,70 @@ fun ActivityScreen(navController: NavController, userViewModel: UserViewModel) {
 
     var selectedActivity by remember { mutableStateOf<String?>(null) }
 
-    Column(
+
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
             .padding(16.dp)
     ) {
+        item {
+            Text(
+                text = "Log Activity",
+                style = MaterialTheme.typography.titleLarge
+            )
 
-        Text(
-            text = "Log Activity",
-            style = MaterialTheme.typography.titleLarge
-        )
+            Spacer(modifier = Modifier.height(16.dp))
+        }
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        LazyColumn {
-            items(activities) { activity ->
-
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 6.dp)
-                        .clickable {
-                            selectedActivity = activity
-                        }
-                ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth().padding(12.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(text = activity)
-
-                        Icon(
-                            imageVector = Icons.Default.Add,
-                            contentDescription = "Add"
-                        )
+        items(activities) { activity ->
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 6.dp)
+                    .clickable {
+                        selectedActivity = activity
                     }
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(text = activity)
+
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = "Add"
+                    )
                 }
             }
         }
-        if (selectedActivity != null) {
-            AlertDialog(
-                onDismissRequest = { selectedActivity = null },
-                title = { Text("Add Activity") },
-                text = { Text("Add ${selectedActivity} to your diary?") },
-                confirmButton = {
-                    TextButton(
-                        onClick = {
-                            userViewModel.addActivity(selectedActivity!!)
-                            selectedActivity = null
-                            navController.popBackStack() // go back
-                        }
-                    ) {
-                        Text("Add Activity")
+    }
+
+    // AlertDialog is placed outside the scrollable area.
+    if (selectedActivity != null) {
+        AlertDialog(
+            onDismissRequest = { selectedActivity = null },
+            title = { Text("Add Activity") },
+            text = { Text("Add ${selectedActivity} to your diary?") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        userViewModel.addActivity(selectedActivity!!)
+                        selectedActivity = null
+                        navController.popBackStack() // go back
                     }
-                },
-                dismissButton = {
-                    TextButton(
-                        onClick = { selectedActivity = null }
-                    ) {
-                        Text("Cancel")
-                    }
+                ) {
+                    Text("Add Activity")
                 }
-            )
-        }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = { selectedActivity = null }
+                ) {
+                    Text("Cancel")
+                }
+            }
+        )
     }
 }
