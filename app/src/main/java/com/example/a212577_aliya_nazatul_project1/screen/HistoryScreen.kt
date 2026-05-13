@@ -1,20 +1,22 @@
-package com.example.a212577_aliya_nazatul_lab4.screen
+package com.example.a212577_aliya_nazatul_project1.screen
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.collectAsState
-import com.example.a212577_aliya_nazatul_lab4.viewmodel.UserViewModel
+import com.example.a212577_aliya_nazatul_project1.viewmodel.UserViewModel
 
 @Composable
 fun HistoryScreen(userViewModel: UserViewModel) {
 
     val history = userViewModel.bmiHistory.collectAsState().value
 
-    Column(modifier = Modifier.padding(20.dp)) {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState()).padding(20.dp)) {
 
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(

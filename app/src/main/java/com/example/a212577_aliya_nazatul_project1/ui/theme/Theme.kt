@@ -1,4 +1,4 @@
-package com.example.a212577_aliya_nazatul_lab4.ui.theme
+package com.example.a212577_aliya_nazatul_project1.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -253,7 +253,7 @@ val unspecified_scheme = ColorFamily(
 )
 
 @Composable
-fun A212577_Aliya_Nazatul_Lab4Theme(
+fun A212577_Aliya_Nazatul_Project1Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,

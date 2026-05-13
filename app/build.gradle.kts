@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.a212577_aliya_nazatul_lab4"
+    namespace = "com.example.a212577_aliya_nazatul_project1"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.a212577_aliya_nazatul_lab3"
+        applicationId = "com.example.a212577_aliya_nazatul_project1"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -50,6 +50,9 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.foundation.layout)
     implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.foundation.layout)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.compose.animation.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -58,5 +61,10 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation("com.patrykandpatrick.vico:compose:1.13.0")
+    implementation(libs.androidx.compose.material.icons.core)
+    implementation("com.patrykandpatrick.vico:compose:1.13.0")
+    implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation("io.coil-kt:coil-gif:2.5.0")
 }
 

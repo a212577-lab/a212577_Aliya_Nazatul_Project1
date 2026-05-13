@@ -1,4 +1,4 @@
-package com.example.a212577_aliya_nazatul_lab4
+package com.example.a212577_aliya_nazatul_project1
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -32,27 +32,30 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextFieldDefaults
-import com.example.a212577_aliya_nazatul_lab4.ui.theme.A212577_Aliya_Nazatul_Lab4Theme
-import com.example.a212577_aliya_nazatul_lab4.screen.MainScreen
-import com.example.a212577_aliya_nazatul_lab4.viewmodel.UserViewModel
+import com.example.a212577_aliya_nazatul_project1.R
+import com.example.a212577_aliya_nazatul_project1.ui.theme.A212577_Aliya_Nazatul_Project1Theme
+import com.example.a212577_aliya_nazatul_project1.screen.MainScreen
+import com.example.a212577_aliya_nazatul_project1.viewmodel.UserViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            A212577_Aliya_Nazatul_Lab4Theme {
+            A212577_Aliya_Nazatul_Project1Theme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = colorScheme.background
@@ -65,7 +68,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 @Composable
-fun BMIApp(userViewModel: UserViewModel){
+fun BMIApp(navController : NavController, userViewModel: UserViewModel){
 
     var heightInput by remember { mutableStateOf("") }
     var weightInput by remember { mutableStateOf("") }
@@ -77,7 +80,7 @@ fun BMIApp(userViewModel: UserViewModel){
     var diet by remember { mutableStateOf("") }
     var expanded by remember { mutableStateOf(false) }
 
-    Column(modifier = Modifier.padding(20.dp)) {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState()).padding(20.dp)) {
 
         Spacer(modifier = Modifier.height(18.dp))
 
@@ -247,22 +250,33 @@ fun BMIApp(userViewModel: UserViewModel){
             }
         }
 
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(15.dp))
 
-        Text("Monthly Weight Progress", fontSize = 18.sp, color = colorScheme.secondary)
-
-        Spacer(modifier = Modifier.height(10.dp))
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.Bottom
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+                .clickable {
+                    navController.navigate("weight_progress")
+                }
         ) {
-            FakeBar(0.6f, "Jan")
-            FakeBar(0.7f, "Feb")
-            FakeBar(0.5f, "Mar")
-            FakeBar(0.75f, "Apr")
-            FakeBar(0.6f, "May")
+            Spacer(modifier = Modifier.width(16.dp))
+            Text("Weight Progress", style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.padding(16.dp)
+            )
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.Bottom
+            ) {
+                FakeBar(0.6f, "Jan")
+                FakeBar(0.7f, "Feb")
+                FakeBar(0.5f, "Mar")
+                FakeBar(0.75f, "Apr")
+                FakeBar(0.6f, "May")
+            }
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
