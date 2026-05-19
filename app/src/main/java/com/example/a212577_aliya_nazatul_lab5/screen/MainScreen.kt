@@ -1,4 +1,4 @@
-package com.example.a212577_aliya_nazatul_project1.screen
+package com.example.a212577_aliya_nazatul_lab5.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
@@ -6,23 +6,33 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.a212577_aliya_nazatul_lab5.R
 import androidx.navigation.compose.rememberNavController
-import com.example.a212577_aliya_nazatul_project1.BMIApp
-import com.example.a212577_aliya_nazatul_project1.navigation.Screen
-import com.example.a212577_aliya_nazatul_project1.R
-import com.example.a212577_aliya_nazatul_project1.ui.theme.A212577_Aliya_Nazatul_Project1Theme
-import com.example.a212577_aliya_nazatul_project1.viewmodel.UserViewModel
+import com.example.a212577_aliya_nazatul_lab5.BMIApp
+import com.example.a212577_aliya_nazatul_lab5.data.ActivityRepository
+import com.example.a212577_aliya_nazatul_lab5.data.AppDatabase
+import com.example.a212577_aliya_nazatul_lab5.navigation.Screen
+import com.example.a212577_aliya_nazatul_lab5.ui.theme.A212577_Aliya_Nazatul_Lab5Theme
+import com.example.a212577_aliya_nazatul_lab5.viewmodel.UserViewModel
+import com.example.a212577_aliya_nazatul_lab5.viewmodel.UserViewModelFactory
 
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    val userViewModel: UserViewModel = viewModel()
+    val context = LocalContext.current
+    val db = AppDatabase.getDatabase(context)
+    val dao = db.activityDao()
+    val repository = ActivityRepository(dao)
+    val userViewModel: UserViewModel = viewModel(
+        factory = UserViewModelFactory(repository)
+    )
 
     Scaffold(
         bottomBar = {
@@ -93,7 +103,7 @@ fun MainScreen() {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
-    A212577_Aliya_Nazatul_Project1Theme {
+    A212577_Aliya_Nazatul_Lab5Theme {
         MainScreen()
     }
 }

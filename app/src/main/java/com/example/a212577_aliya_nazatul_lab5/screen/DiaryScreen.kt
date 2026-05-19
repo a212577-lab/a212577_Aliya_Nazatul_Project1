@@ -1,4 +1,4 @@
-package com.example.a212577_aliya_nazatul_project1.screen
+package com.example.a212577_aliya_nazatul_lab5.screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,8 +15,9 @@ import androidx.navigation.NavController
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import com.example.a212577_aliya_nazatul_project1.R
-import com.example.a212577_aliya_nazatul_project1.viewmodel.UserViewModel
+import com.example.a212577_aliya_nazatul_lab5.R
+import androidx.compose.runtime.collectAsState
+import com.example.a212577_aliya_nazatul_lab5.viewmodel.UserViewModel
 
 @Composable
 fun DiaryScreen(navController : NavController, userViewModel: UserViewModel){
@@ -29,8 +30,7 @@ fun DiaryScreen(navController : NavController, userViewModel: UserViewModel){
     var showDialog by remember { mutableStateOf(false) }
     var weightInput by remember { mutableStateOf("") }
 
-    val activities = userViewModel.activities
-
+    val activities by userViewModel.activities.collectAsState(initial = emptyList())
     Column(modifier = Modifier
         .verticalScroll(rememberScrollState())
         .padding(20.dp))
@@ -240,6 +240,14 @@ fun DiaryScreen(navController : NavController, userViewModel: UserViewModel){
                     Spacer(modifier = Modifier.width(8.dp))
 
                     Text("${activity.calories} kcal")
+
+                    Spacer(modifier = Modifier.width(8.dp))
+
+                    TextButton(onClick = {
+                        userViewModel.deleteActivity(activity)
+                    }) {
+                        Text("Delete")
+                    }
                 }
             }
         }

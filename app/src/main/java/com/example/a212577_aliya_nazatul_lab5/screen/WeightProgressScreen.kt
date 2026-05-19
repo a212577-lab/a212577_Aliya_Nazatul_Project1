@@ -1,4 +1,4 @@
-package com.example.a212577_aliya_nazatul_project1.screen
+package com.example.a212577_aliya_nazatul_lab5.screen
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -15,10 +15,10 @@ import androidx.navigation.NavController
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import com.example.a212577_aliya_nazatul_project1.R
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import com.example.a212577_aliya_nazatul_project1.viewmodel.UserViewModel
+import com.example.a212577_aliya_nazatul_lab5.R
+import com.example.a212577_aliya_nazatul_lab5.viewmodel.UserViewModel
 
 @Composable
 fun WeightProgressScreen(navController: NavController, userViewModel: UserViewModel) {

@@ -1,4 +1,4 @@
-package com.example.a212577_aliya_nazatul_project1.navigation
+package com.example.a212577_aliya_nazatul_lab5.navigation
 
 //sealed --> only allow defined screens
 sealed class Screen(val route: String) {

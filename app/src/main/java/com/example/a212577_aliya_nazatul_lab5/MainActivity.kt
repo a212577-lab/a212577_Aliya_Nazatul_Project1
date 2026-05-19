@@ -1,4 +1,4 @@
-package com.example.a212577_aliya_nazatul_project1
+package com.example.a212577_aliya_nazatul_lab5
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -43,10 +43,10 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextFieldDefaults
-import com.example.a212577_aliya_nazatul_project1.R
-import com.example.a212577_aliya_nazatul_project1.ui.theme.A212577_Aliya_Nazatul_Project1Theme
-import com.example.a212577_aliya_nazatul_project1.screen.MainScreen
-import com.example.a212577_aliya_nazatul_project1.viewmodel.UserViewModel
+import com.example.a212577_aliya_nazatul_lab5.R
+import com.example.a212577_aliya_nazatul_lab5.ui.theme.A212577_Aliya_Nazatul_Lab5Theme
+import com.example.a212577_aliya_nazatul_lab5.screen.MainScreen
+import com.example.a212577_aliya_nazatul_lab5.viewmodel.UserViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            A212577_Aliya_Nazatul_Project1Theme {
+            A212577_Aliya_Nazatul_Lab5Theme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = colorScheme.background

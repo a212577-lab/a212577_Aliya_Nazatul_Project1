@@ -1,4 +1,4 @@
-package com.example.a212577_aliya_nazatul_project1.screen
+package com.example.a212577_aliya_nazatul_lab5.screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -27,7 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.a212577_aliya_nazatul_project1.viewmodel.UserViewModel
+import com.example.a212577_aliya_nazatul_lab5.viewmodel.UserViewModel
 
 @Composable
 fun ActivityScreen(navController: NavController, userViewModel: UserViewModel) {
